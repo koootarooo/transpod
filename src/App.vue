@@ -1,5 +1,5 @@
 <template>
-  <TranslatePodcast msg="Transpod - Get your podcast into your language."/>
+  <TranslatePodcast msg="Transpod - Turn your podcast into your language."/>
 </template>
 
 <script>
