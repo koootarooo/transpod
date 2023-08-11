@@ -1,14 +1,14 @@
 <template>
-  <HelloWorld msg="Transpod - Get your podcast into your language."/>
+  <TranslatePodcast msg="Transpod - Get your podcast into your language."/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TranslatePodcast from './components/TranslatePodcast.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    TranslatePodcast
   }
 }
 </script>
