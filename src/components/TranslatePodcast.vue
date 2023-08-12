@@ -11,7 +11,7 @@
       <p>{{file_title}}</p>
       <p>{{file_size}}</p>
     </div>
-    <button class="translate_btn" @click="translate()" v-if="!isLoading">translate</button>
+    <button class="translate_btn" @click="translate()" v-if="!isLoading" v-bind:disabled="!isFile">translate</button>
     <div class="loading_contents" v-if="isLoading">
       <div class="loading_message">
         Now Translating...<br>
@@ -39,7 +39,8 @@ export default {
       file_title: "",
       file_size: "",
       isEnter: false,
-      isLoading: false
+      isLoading: false,
+      isFile: false
     }
   },
   methods: {
@@ -54,7 +55,8 @@ export default {
       this.file_title = file.name
       const fs = file.size/1024/1024
       this.file_size = fs.toFixed(1) + "MB"
-      this.isEnter = false;
+      this.isEnter = false
+      this.isFile = true
     },
     translate() {
       this.isLoading = true
@@ -63,6 +65,7 @@ export default {
       this.file_title = ""
       this.file_size = ""
       this.isLoading = false
+      this.isFile = false
     }
   }
 }
@@ -107,7 +110,7 @@ export default {
   display: block;
 	text-align: center;
 	text-decoration: none;
-	width: 250px;
+	width: 200px;
 	margin: auto;
 	padding: 1rem 4rem;
   font-size: 20px;
@@ -117,6 +120,12 @@ export default {
 	color: #fff;
 	border-radius: 100vh;
 	transition: 0.5s;
+}
+.translate_btn:disabled {
+  border: gray;
+  background: gray;
+  color: rgb(66, 66, 66);
+  pointer-events: none;
 }
 .translate_btn:hover {
 	color: #27acd9;
