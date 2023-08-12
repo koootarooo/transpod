@@ -4,8 +4,8 @@
       <h1>{{ msg }}</h1>
     </div>
     <div class="drop_zone" @dragenter="dragEnter" @dragleave="dragLeave" @dragover.prevent @drop.prevent="dropFile" :class="{enter: isEnter}" v-if="!isLoading">
-      <img src="../assets/upload_img.png" width="60" height="60">
-      Drag & drop your podcast data<br>
+      <img src="../assets/upload_img_lightblue.png" width="60" height="60">
+      <span class="main_message">Drag & drop your podcast data</span><br>
       <span class="available_format">.mp3 .mpeg only</span>
     </div>
     <div class="preview_zone">
@@ -164,6 +164,10 @@ export default {
   flex-flow: column;
   align-items: center;
   justify-content: center;
+}
+.main_message {
+  color: #27acd9;
+  font-size: 25px;
 }
 .loading_message {
   padding-bottom: 20px;
