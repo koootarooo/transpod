@@ -1,7 +1,7 @@
 <template>
     <header class="header">
         <a href="">
-            <img src="../assets/transpod_logo.png" height="30" width="80" alt="transpod">
+            <img src="../assets/transpod_logo_lightblue.png" height="40" width="104" alt="transpod">
         </a>
         <!-- <span>transpod</span> -->
     </header>
@@ -18,6 +18,8 @@ export default {
 .header {
     display: flex;
     justify-content: flex-start;
+    /* border-bottom: solid 1px;
+    border-bottom-color: rgb(219, 218, 218); */
 }
 span {
     font-weight: bold;

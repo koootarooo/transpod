@@ -3,9 +3,10 @@
     <div class="msg">
       <h1>{{ msg }}</h1>
     </div>
-    <div class="drop_zone" @dragenter="dragEnter" @dragleave="dragLeave" @dragover.prevent @drop.prevent="dropFile" :class="{enter: isEnter}">
+    <div class="drop_zone" @dragenter="dragEnter" @dragleave="dragLeave" @dragover.prevent @drop.prevent="dropFile" :class="{enter: isEnter}" v-if="!isLoading">
       <img src="../assets/upload_img.png" width="60" height="60">
-      Drag & drop to upload
+      Drag & drop your podcast data<br>
+      <span class="available_format">.mp3 .mpeg only</span>
     </div>
     <div class="preview_zone">
       <p>{{file_title}}</p>
@@ -14,8 +15,9 @@
     <button class="translate_btn" @click="translate()" v-if="!isLoading" v-bind:disabled="!isFile">translate</button>
     <div class="loading_contents" v-if="isLoading">
       <div class="loading_message">
-        Now Translating...<br>
-        We'll send you email when tlanslating is done.
+        Now translating...<br>
+        We'll send you email when tlanslating is done.<br>
+        This may take a few minutes.
       </div>
       <div class="fulfilling-bouncing-circle-spinner">
         <div class="circle"></div>
@@ -105,6 +107,9 @@ export default {
 .enter {
   background-color:  rgb(26, 94, 240);
   opacity: 0.3;
+}
+.available_format {
+  color: gray;
 }
 .translate_btn {
   display: block;
