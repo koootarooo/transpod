@@ -1,14 +1,19 @@
 <template>
-  <TranslatePodcast msg="Transpod - Turn your podcast into your language."/>
+  <div id="app">
+    <MainHeader/>
+    <TranslatePodcast msg="Turn your podcast into your language."/>
+  </div>
 </template>
 
 <script>
+import MainHeader from './components/MainHeader.vue'
 import TranslatePodcast from './components/TranslatePodcast.vue'
 
 export default {
   name: 'App',
   components: {
-    TranslatePodcast
+    TranslatePodcast,
+    MainHeader
   }
 }
 </script>
@@ -20,6 +25,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
