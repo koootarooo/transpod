@@ -12,9 +12,18 @@
       <p>{{file_size}}</p>
     </div>
     <button class="translate_btn" @click="translate()" v-if="!isLoading">translate</button>
-    <div class="fulfilling-bouncing-circle-spinner" v-if="isLoading">
-      <div class="circle"></div>
-      <div class="orbit"></div>
+    <div class="loading_contents" v-if="isLoading">
+      <div class="loading_message">
+        Now Translating...<br>
+        We'll send you email when tlanslating is done.
+      </div>
+      <div class="fulfilling-bouncing-circle-spinner">
+        <div class="circle"></div>
+        <div class="orbit"></div>
+      </div>
+      <div class="translate_more" @click="reset()">
+        <span class="translate_again_btn">translate another file</span>
+      </div>
     </div>
   </div>
 </template>
@@ -48,8 +57,12 @@ export default {
       this.isEnter = false;
     },
     translate() {
-      console.log('translate')
       this.isLoading = true
+    },
+    reset() {
+      this.file_title = ""
+      this.file_size = ""
+      this.isLoading = false
     }
   }
 }
@@ -108,6 +121,24 @@ export default {
 .translate_btn:hover {
 	color: #27acd9;
 	background: #fff;
+}
+.loading_contents {
+  display: flex;
+  align-self: center;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+.loading_message {
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+.translate_more {
+  padding-top: 20px;
+}
+.translate_again_btn {
+  text-decoration: underline;
+  color: blue;
 }
 /* 以下アニメーション */
 .fulfilling-bouncing-circle-spinner, .fulfilling-bouncing-circle-spinner * {
