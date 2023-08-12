@@ -12,7 +12,7 @@
       <p>{{file_title}}</p>
       <p>{{file_size}}</p>
     </div>
-    <button class="translate_btn" @click="translate()" v-if="!isLoading" v-bind:disabled="!isFile">translate</button>
+    <button class="translate_btn" @click="openModal()" v-if="!isLoading" v-bind:disabled="!isFile">translate</button>
     <div class="loading_contents" v-if="isLoading">
       <div class="loading_message">
         Now translating...<br>
@@ -25,6 +25,14 @@
       </div>
       <div class="translate_more" @click="reset()">
         <span class="translate_again_btn">translate another file</span>
+      </div>
+    </div>
+    <div class="overlay" v-if="showModal">
+      <div class="overlay_contents">
+        <button class="closeButton" @click="closeModal()">close×</button>
+        <p>Enter your email,<br>so that we'll send you the translated file.</p>
+        <input type="text" class="emailForm" v-model="userEmail" />
+        <button class="translate_btn" @click="closeModal(); translate()" v-bind:disabled="!rightEmail">translate</button>
       </div>
     </div>
   </div>
@@ -42,7 +50,15 @@ export default {
       file_size: "",
       isEnter: false,
       isLoading: false,
-      isFile: false
+      isFile: false,
+      showModal: false,
+      userEmail: ""
+    }
+  },
+  computed: {
+    rightEmail: function(){
+      const right_pattern = new RegExp(/^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/);
+      return right_pattern.test(this.userEmail)
     }
   },
   methods: {
@@ -68,6 +84,12 @@ export default {
       this.file_size = ""
       this.isLoading = false
       this.isFile = false
+    },
+    openModal(){
+      this.showModal = true
+    },
+    closeModal() {
+      this.showModal = false
     }
   }
 }
@@ -154,7 +176,52 @@ export default {
   text-decoration: underline;
   color: blue;
 }
-/* 以下アニメーション */
+
+/* overlay */
+.overlay{
+  z-index:1;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.overlay_contents {
+  z-index: 2;
+  width: 50%;
+  height:50%;
+  padding: 1em;
+  background: #fff;
+  display: flex;
+  align-self: center;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+.overlay_contents p {
+  font-weight: bold;
+}
+.emailForm {
+  width: 200px;
+  padding: 3px 7px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+}
+.emailForm:focus {
+  outline: 0;
+  border: 2px solid #2196f3;
+}
+.closeButton {
+  align-self: flex-end;
+  border: #fff;
+  background-color: #fff;
+}
+
+/* loading animation */
 .fulfilling-bouncing-circle-spinner, .fulfilling-bouncing-circle-spinner * {
   box-sizing: border-box;
 }
