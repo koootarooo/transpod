@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <MainHeader/>
-    <TranslatePodcast msg="Turn your podcast into your language."/>
+    <TranslatePodcast/>
   </div>
 </template>
 

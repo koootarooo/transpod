@@ -1,7 +1,7 @@
 <template>
   <div class="translate">
     <div class="msg">
-      <h1>{{ msg }}</h1>
+      <h1>Turn your podcast into your language.</h1>
     </div>
     <div class="drop_zone" @dragenter="dragEnter" @dragleave="dragLeave" @dragover.prevent @drop.prevent="dropFile" :class="{enter: isEnter}" v-if="!isLoading">
       <img src="../assets/upload_img_lightblue.png" width="60" height="60">
@@ -41,9 +41,6 @@
 <script>
 export default {
   name: 'TranslatePodcast',
-  props: {
-    msg: String
-  },
   data() {
     return {
       file_title: "",
@@ -332,4 +329,43 @@ export default {
     transform: scale(1);
   }
 } 
+
+/* for smartphone */
+@media screen and (max-width:480px) {
+  .msg {
+    margin-top: 30px;
+  }
+  .drop_zone {
+    border: 3px dotted #d3d3d3;
+    width: 90vw;
+    height: 70vw;
+    display:flex;
+    align-self: center;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .overlay{
+    z-index:1;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.5);
+    display: block;
+  }
+  .overlay_contents {
+    z-index: 2;
+    width: 75%;
+    height:25%;
+    background: #fff;
+    margin: auto;
+    margin-top: 80px;
+  }
+
+}
 </style>
